@@ -3,13 +3,9 @@
     <div class="bg-primary border-right" id="sidebar-wrapper">
         <div class="list-group list-group-flush">
             <br>
-            <a routerLink='login' class="list-group-item list-group-item-action bg-primary">Iniciar sesión</a>
-            <a href="#" class="list-group-item list-group-item-action bg-primary">Shortcuts</a>
-            <div *ngIf="true">
-                <a href="#" class="list-group-item list-group-item-action bg-primary">Overview</a>
-                <a href="#" class="list-group-item list-group-item-action bg-primary">Events</a>
-                <a href="#" class="list-group-item list-group-item-action bg-primary">Profile</a>
-                <a href="#" class="list-group-item list-group-item-action bg-primary">Status</a>
+            <a *ngIf="!usuarioService.sesionIniciada()" routerLink='login' class="list-group-item list-group-item-action bg-primary">Iniciar sesión</a>
+            <div *ngIf="usuarioService.sesionIniciada()">
+                <a href="#" class="list-group-item list-group-item-action bg-primary" (click)="logout()">Cerrar sesión</a>
             </div>
         </div>
     </div>

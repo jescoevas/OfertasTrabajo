@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +9,7 @@ import * as $ from 'jquery';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor( public usuarioService:UsuarioService) { }
 
   ngOnInit() {
     $("#wrapper").toggleClass("toggled");
@@ -16,6 +17,10 @@ export class NavbarComponent implements OnInit {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
+  }
+
+  logout(){
+    localStorage.removeItem('_id')
   }
 
 }

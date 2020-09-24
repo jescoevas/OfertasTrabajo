@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+const usuarioRoutes = require('./routes/usuario.routes')
 
 const app = express()
 
@@ -11,7 +12,7 @@ app.use(express.json())
 app.use(cors({ origin: 'http://localhost:4200' }));
 
 //Routes
-
+app.use(usuarioRoutes)
 
 //Starting
 function startServer() {

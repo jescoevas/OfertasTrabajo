@@ -2,15 +2,23 @@
     <p>¿No tienes cuenta? Regístrese <a routerLink="/registro">aquí</a></p>
     <form (ngSubmit)="login()" autocomplete="off" [formGroup]="form">
         <div class="form-group">
+            <label>Tipo de usuario</label>
+            <select type="tipo" class="form-control" formControlName="tipo" [class.is-invalid]="tipoRequerido">
+                <option value=""></option>
+                <option *ngFor="let t of tipos" [value]="t">{{t}}</option>
+            </select>
+            <small *ngIf="tipoRequerido" class="text-danger">Campo requerido</small>
+        </div>
+        <div class="form-group">
             <label>Usuario</label>
-            <input type="text" class="form-control" formControlName="usuario" [class.is-invalid]="usuarioNoValido">
+            <input type="text" class="form-control" formControlName="usuario" [class.is-invalid]="usuarioNoValido || usuarioNoExiste" (keyup)="usuarioNoExiste=false">
             <small *ngIf="usuarioRequerido" class="text-danger">Campo requerido</small>
-            <small *ngIf="usuarioIncorrecto" class="text-danger">El usuario no existe</small>
+            <small *ngIf="usuarioNoExiste" class="text-danger">El usuario no existe</small>
         </div>
         <div class="form-group">
             <label>Password</label>
             <input type="password" class="form-control" formControlName="password" [class.is-invalid]="passwordNoValido || passwordIncorrecta" (keyup)="passwordIncorrecta = false">
-            <small *ngIf="passwordNoValido" class="text-danger">Campo requerido</small>
+            <small *ngIf="passwordRequerido" class="text-danger">Campo requerido</small>
             <small *ngIf="passwordIncorrecta" class="text-danger">Password incorrecta</small>
         </div>
         <div class="form-group">

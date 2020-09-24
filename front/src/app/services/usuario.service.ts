@@ -15,17 +15,15 @@ export class UsuarioService {
     return this.http.post(`${this.back_url}/registro`, usuario)
   }
 
-  checkUsuario(usuario:string){
-    return this.http.get(`${this.back_url}/registro/checkUsuario/${usuario}`).pipe(map(data => data['num']))
+  checkUsuario(usuario:string, tipo:string){
+    return this.http.get(`${this.back_url}/registro/checkUsuario/${usuario}/${tipo}`).pipe(map(data => data['num']))
   }
 
   login(data){
     return this.http.post(`${this.back_url}/login`,data)
   }
 
-  logout(){
-    localStorage.removeItem('_id')
-  }
+  
 
   sesionIniciada(){
     if(localStorage.getItem('_id')){
