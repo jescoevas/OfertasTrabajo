@@ -24,8 +24,7 @@ const demandanteSchema = new Schema({
     },
     telefono: {
         type: Number,
-        required: true,
-        unique: true
+        required: true
     },
     email: {
         type: String,
@@ -34,8 +33,7 @@ const demandanteSchema = new Schema({
     },
     direccion: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     foto: {
         type: String

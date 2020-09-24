@@ -12,8 +12,7 @@ const empresaSchema = new Schema({
     },
     nombre: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     direccion: {
         type: String,
@@ -25,8 +24,7 @@ const empresaSchema = new Schema({
     },
     telefono: {
         type: Number,
-        required: true,
-        unique: true
+        required: true
     },
     email: {
         type: String,
@@ -35,7 +33,7 @@ const empresaSchema = new Schema({
     },
     web: {
         type: String,
-        required: true,
+        required: false,
         unique: true
     }
 })

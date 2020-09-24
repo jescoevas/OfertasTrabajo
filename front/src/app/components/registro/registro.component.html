@@ -2,20 +2,82 @@
     <p>¿Ya tienes cuenta? Inicia sesión <a routerLink="/login">aquí</a></p>
     <form (ngSubmit)="registro()" [formGroup]="form" autocomplete="off">
         <div class="form-group">
-            <label>Usuario</label>
-            <input type="text" class="form-control" formControlName="usuario">
-            <small class="text-danger">Campo requerido</small>
-            <small class="text-danger">Mínimo seis caracteres</small>
-            <small class="text-danger">El usuario ya existe</small>
+            <label>Tipo de usuario</label>
+            <select type="tipo" class="form-control" formControlName="tipo" (change)="change()">
+                <option value="default"></option>
+                <option value="Empresa">Empresa</option>
+                <option value="Demandante">Demandante</option>
+            </select>
         </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" formControlName="password">
-            <small class="text-danger">Campo requerido</small>
-            <small class="text-danger">Mínimo seis caracteres</small>
+
+        <div *ngIf="datos !== 'default'">
+            <div class="form-group">
+                <label>Usuario</label>
+                <input type="text" class="form-control" formControlName="usuario" [class.is-invalid]="usuarioNoValido">
+                <small *ngIf="usuarioRequerido" class="text-danger">Campo requerido</small>
+                <small *ngIf="usuarioMinLength" class="text-danger">Debe tener una longitud mínima de 6 caracteres</small>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="text" class="form-control" formControlName="password" [class.is-invalid]="passwordNoValido">
+                <small *ngIf="passwordRequerido" class="text-danger">Campo requerido</small>
+                <small *ngIf="passwordMinLength" class="text-danger">Debe tener una longitud mínima de 6 caracteres</small>
+            </div>
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" class="form-control" formControlName="nombre" [class.is-invalid]="nombreNoValido">
+                <small *ngIf="nombreRequerido" class="text-danger">Campo requerido</small>
+            </div>
+            <div *ngIf="datos === 'Demandante'">
+                <div class="form-group">
+                    <label>Apellidos</label>
+                    <input type="text" class="form-control" formControlName="apellidos" [class.is-invalid]="apellidosNoValido">
+                    <small *ngIf="apellidosRequerido" class="text-danger">Campo requerido</small>
+                </div>
+                <div class="form-group">
+                    <label>Fecha de nacimiento</label>
+                    <input type="date" class="form-control" formControlName="fechaNacimiento" [class.is-invalid]="fechaNacimientoNoValido">
+                    <small *ngIf="fechaNacimientoRequerido" class="text-danger">Campo requerido</small>
+                    <small *ngIf="fechaNacimientoFechaAnteriorAHoy" class="text-danger">La fecha debe ser anterior a hoy</small>
+                </div>
+                <div class="form-group">
+                    <label>Foto</label>
+                    <input type="text" class="form-control" formControlName="foto">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Direccion</label>
+                <input type="text" class="form-control" formControlName="direccion" [class.is-invalid]="direccionNoValido">
+                <small *ngIf="direccionRequerido" class="text-danger">Campo requerido</small>
+            </div>
+            <div *ngIf="datos === 'Empresa'">
+                <div class="form-group">
+                    <label>Descripcion</label>
+                    <textarea class="form-control" rows="4" formControlName="descripcion" [class.is-invalid]="descripcionNoValido"></textarea>
+                    <small *ngIf="descripcionRequerido" class="text-danger">Campo requerido</small>
+                </div>
+                <div class="form-group">
+                    <label>Web</label>
+                    <input type="text" class="form-control" formControlName="web" [class.is-invalid]="webNoValido">
+                    <small *ngIf="webRequerido" class="text-danger">No es una URL válida</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Teléfono</label>
+                <input type="text" class="form-control" formControlName="telefono" [class.is-invalid]="telefonoNoValido">
+                <small *ngIf="telefonoRequerido" class="text-danger">Campo requerido</small>
+                <small *ngIf="telefonoNoNumerico" class="text-danger">Debe ser un valor numérico de 9 cifras</small>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" formControlName="email" [class.is-invalid]="emailNoValido">
+                <small *ngIf="emailRequerido" class="text-danger">Campo requerido</small>
+                <small *ngIf="emailEmail" class="text-danger">No es un email válido</small>
+            </div>
         </div>
+
         <div class="form-group">
-            <button type="submit" class="btn btn-outline-primary btn-block">Registrarse</button>
+            <button type="submit" class="btn btn-outline-primary btn-block" [disabled]="datos === 'default'">Registrarse</button>
         </div>
     </form>
 </div>

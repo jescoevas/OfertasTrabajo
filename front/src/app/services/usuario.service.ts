@@ -23,8 +23,6 @@ export class UsuarioService {
     return this.http.post(`${this.back_url}/login`,data)
   }
 
-  
-
   sesionIniciada(){
     if(localStorage.getItem('_id')){
       return true
