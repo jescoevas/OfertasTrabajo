@@ -16,7 +16,15 @@ export class UsuarioService {
   }
 
   checkUsuario(usuario:string, tipo:string){
-    return this.http.get(`${this.back_url}/registro/checkUsuario/${usuario}/${tipo}`).pipe(map(data => data['num']))
+    return this.http.get(`${this.back_url}/registro/checkUsuario/${usuario}/${tipo}`)
+  }
+
+  checkEmail(email:string, tipo:string){
+    return this.http.get(`${this.back_url}/registro/checkEmail/${email}/${tipo}`)
+  }
+
+  checkWeb(web:string){
+    return this.http.get(`${this.back_url}/registro/checkWeb/${web}`).pipe(map(data => data['num']))
   }
 
   login(data){

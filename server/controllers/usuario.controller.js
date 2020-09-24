@@ -84,17 +84,46 @@ usuarioController.checkUsuario = async(req, res) => {
     if (tipo === 'Empresa') {
         const encontrado = await Empresa.find({ usuario })
         return res.json({
-            success: true,
+            message: true,
+            tipo,
             num: encontrado.length
         })
     } else {
         const encontrado = await Demandante.find({ usuario })
         return res.json({
             success: true,
+            tipo,
             num: encontrado.length
         })
     }
+}
 
+usuarioController.checkEmail = async(req, res) => {
+    const { email, tipo } = req.params
+    if (tipo === 'Empresa') {
+        const encontrado = await Empresa.find({ email })
+        return res.json({
+            message: true,
+            tipo,
+            num: encontrado.length
+        })
+    } else {
+        const encontrado = await Demandante.find({ email })
+        return res.json({
+            success: true,
+            tipo,
+            num: encontrado.length
+        })
+    }
+}
+
+usuarioController.checkWeb = async(req, res) => {
+    const { web } = req.params
+    const encontrado = await Empresa.find({ web })
+    return res.json({
+        message: true,
+        num: encontrado.length
+    })
 }
 
 module.exports = { usuarioController }

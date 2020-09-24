@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-registro',
@@ -16,29 +17,6 @@ export class RegistroComponent{
   defaultForm:any = {
     tipo:['', [Validators.required]],
   }
-  empresaForm:any = {
-    usuario:['', [Validators.required, Validators.minLength(6)]],
-    password:['', [Validators.required, Validators.minLength(6)]],
-    tipo:['Empresa', [Validators.required]],
-    nombre:['', [Validators.required]],
-    direccion:['', [Validators.required]],
-    descripcion:['', [Validators.required]],
-    telefono:['', [Validators.required, this.debeSerNumerico]],
-    email:['', [Validators.required, Validators.email]],
-    web:['', [Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]]
-  }
-  demandanteForm:any = {
-    usuario:['', [Validators.required, Validators.minLength(6)]],
-    password:['', [Validators.required, Validators.minLength(6)]],
-    tipo:['Demandante', [Validators.required]],
-    nombre:['', [Validators.required]],
-    apellidos:['', [Validators.required]],
-    fechaNacimiento:['', [Validators.required, this.fechaAnteriorAHoy]],
-    telefono:['', [Validators.required, this.debeSerNumerico]],
-    email:['', [Validators.required, Validators.email]],
-    direccion:['', [Validators.required]],
-    foto:['', [Validators.required]],
-  }
 
   constructor(private usuarioService:UsuarioService, private router:Router, private builder:FormBuilder) { 
     this.form = this.builder.group(this.defaultForm),
@@ -47,13 +25,16 @@ export class RegistroComponent{
 
   //Validaciones síncronas
   get usuarioNoValido(){
-    return this.usuarioRequerido || this.usuarioMinLength
+    return this.usuarioRequerido || this.usuarioMinLength || this.usuarioUsuarioEnUso
   }
   get usuarioRequerido(){
     return this.form.get('usuario').errors ? this.form.get('usuario').errors.required && this.form.get('usuario').touched : null
   }
   get usuarioMinLength(){
     return this.form.get('usuario').errors ? this.form.get('usuario').errors.minlength && this.form.get('usuario').touched : null
+  }
+  get usuarioUsuarioEnUso(){
+    return this.form.get('usuario').errors ? this.form.get('usuario').errors.usuarioEnUso && this.form.get('usuario').touched : null
   }
 
   get passwordNoValido(){
@@ -105,10 +86,13 @@ export class RegistroComponent{
   }
 
   get webNoValido(){
-    return this.webRequerido
+    return this.webRequerido || this.webWebEnUso
   }
   get webRequerido(){
     return this.form.get('web').errors ? this.form.get('web').errors.pattern && this.form.get('web').touched : null
+  }
+  get webWebEnUso(){
+    return this.form.get('web').errors ? this.form.get('web').errors.webEnUso && this.form.get('web').touched : null
   }
 
   get telefonoNoValido(){
@@ -122,13 +106,103 @@ export class RegistroComponent{
   }
 
   get emailNoValido(){
-    return this.emailRequerido || this.emailEmail
+    return this.emailRequerido || this.emailEmail || this.emailEmailEnUso
   }
   get emailRequerido(){
     return this.form.get('email').errors ? this.form.get('email').errors.required && this.form.get('email').touched : null
   }
   get emailEmail(){
     return this.form.get('email').errors ? this.form.get('email').errors.email && this.form.get('email').touched : null
+  }
+  get emailEmailEnUso(){
+    return this.form.get('email').errors ? this.form.get('email').errors.emailEnUso && this.form.get('email').touched : null
+  }
+
+  //Validaciones asíncronas
+  usuarioEnUsoEmpresa = (control:FormControl):Promise<any> | Observable<any> => {
+    return new Promise((resolve,reject) => {
+      setTimeout(() => {
+        this.usuarioService.checkUsuario(control.value, this.form.value.tipo).subscribe(data => {
+          if(data['tipo'] === 'Empresa'){
+            if(data['num'] > 0){
+              resolve({usuarioEnUso:true})
+            }else{
+              resolve(null)
+            }
+          }else{
+            return(null)
+          }
+        })
+      }, 1500);
+    })
+  }
+
+  emailEnUsoEmpresa = (control:FormControl):Promise<any> | Observable<any> => {
+    return new Promise((resolve,reject) => {
+      setTimeout(() => {
+        this.usuarioService.checkEmail(control.value, this.form.value.tipo).subscribe(data => {
+          if(data['tipo'] === 'Empresa'){
+            if(data['num'] > 0){
+              resolve({emailEnUso:true})
+            }else{
+              resolve(null)
+            }
+          }else{
+            return(null)
+          }
+        })
+      }, 1500);
+    })
+  }
+
+  webEnUso = (control:FormControl):Promise<any> | Observable<any> => {
+    return new Promise((resolve,reject) => {
+      setTimeout(() => {
+        this.usuarioService.checkWeb(control.value).subscribe(num => {
+            if(num > 0){
+              resolve({webEnUso:true})
+            }else{
+              resolve(null)
+            }
+        })
+      }, 1500);
+    })
+  }
+
+  usuarioEnUsoDemandante = (control:FormControl):Promise<any> | Observable<any> => {
+    return new Promise((resolve,reject) => {
+      setTimeout(() => {
+        this.usuarioService.checkUsuario(control.value, this.form.value.tipo).subscribe(data => {
+          if(data['tipo'] === 'Demandante'){
+            if(data['num'] > 0){
+              resolve({usuarioEnUso:true})
+            }else{
+              resolve(null)
+            }
+          }else{
+            return(null)
+          }
+        })
+      }, 1500);
+    })
+  }
+
+  emailEnUsoDemandante = (control:FormControl):Promise<any> | Observable<any> => {
+    return new Promise((resolve,reject) => {
+      setTimeout(() => {
+        this.usuarioService.checkEmail(control.value, this.form.value.tipo).subscribe(data => {
+          if(data['tipo'] === 'Demandante'){
+            if(data['num'] > 0){
+              resolve({emailEnUso:true})
+            }else{
+              resolve(null)
+            }
+          }else{
+            return(null)
+          }
+        })
+      }, 1500);
+    })
   }
 
   //Validaciones personalizadas
@@ -153,13 +227,35 @@ export class RegistroComponent{
     return null
   }
 
+  //Métodos auxiliares
   change(){
     const {tipo} = this.form.value
     if(tipo === 'Empresa'){
-      this.form = this.builder.group(this.empresaForm)
+      this.form = this.builder.group({
+        usuario:['', [Validators.required, Validators.minLength(6)], [this.usuarioEnUsoEmpresa]],
+        password:['', [Validators.required, Validators.minLength(6)]],
+        tipo:['Empresa', [Validators.required]],
+        nombre:['', [Validators.required]],
+        direccion:['', [Validators.required]],
+        descripcion:['', [Validators.required]],
+        telefono:['', [Validators.required, this.debeSerNumerico]],
+        email:['', [Validators.required, Validators.email], [this.emailEnUsoEmpresa]],
+        web:['', [Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')], [this.webEnUso]]
+      })
       this.datos = 'Empresa'
     }else if(tipo === 'Demandante'){
-      this.form = this.builder.group(this.demandanteForm)
+      this.form = this.builder.group({
+        usuario:['', [Validators.required, Validators.minLength(6)], [this.usuarioEnUsoDemandante, this.emailEnUsoDemandante]],
+        password:['', [Validators.required, Validators.minLength(6)]],
+        tipo:['Demandante', [Validators.required]],
+        nombre:['', [Validators.required]],
+        apellidos:['', [Validators.required]],
+        fechaNacimiento:['', [Validators.required, this.fechaAnteriorAHoy]],
+        telefono:['', [Validators.required, this.debeSerNumerico]],
+        email:['', [Validators.required, Validators.email], [this.emailEnUsoDemandante]],
+        direccion:['', [Validators.required]],
+        foto:['', [Validators.required]],
+      })
       this.datos = 'Demandante'
     }else{
       this.form = this.builder.group(this.defaultForm)
@@ -169,12 +265,12 @@ export class RegistroComponent{
 
 
   registro(){
-    console.log(this.form)
     if(this.form.invalid){
       this.form.markAllAsTouched()
     }else{
       this.usuarioService.registro(this.form.value).subscribe(data => {
         console.log(data)
+        this.router.navigateByUrl('')
       })
     }
     return;
