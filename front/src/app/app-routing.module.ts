@@ -5,6 +5,8 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { LoginComponent } from './pages/login/login.component';
 import { OfertasComponent } from './pages/ofertas/ofertas.component';
 import { FormOfertaComponent } from './pages/form-oferta/form-oferta.component';
+import { OfertaComponent } from './pages/oferta/oferta.component';
+import { EmpresaComponent } from './pages/empresa/empresa.component';
 
 
 const routes: Routes = [
@@ -13,6 +15,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'ofertas/:id', component: OfertasComponent },
   { path: 'oferta/new', component: FormOfertaComponent },
+  { path: 'oferta/:id', component: OfertaComponent },
+  { path: 'empresa/:id', component: EmpresaComponent },
   { path: '**', pathMatch: 'full', redirectTo: '' }
 ];
 

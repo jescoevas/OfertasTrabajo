@@ -28,4 +28,15 @@ ofertaController.newOferta = async(req, resp) => {
     })
 }
 
+ofertaController.getById = async(req, resp) => {
+    const { id } = req.params
+    const oferta = await Oferta.findById(id)
+    const empresa = await Empresa.findById(oferta.empresa)
+    return resp.json({
+        success: true,
+        oferta,
+        empresa
+    })
+}
+
 module.exports = { ofertaController }

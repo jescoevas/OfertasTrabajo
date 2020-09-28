@@ -21,4 +21,8 @@ export class OfertaService {
     return this.http.post(`${this.back_url}/oferta/new`, data)
   }
 
+  getOfertaById(id){
+    return this.http.get(`${this.back_url}/oferta/${id}`)
+  }
+
 }

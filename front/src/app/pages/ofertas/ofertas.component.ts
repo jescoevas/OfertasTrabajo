@@ -15,7 +15,6 @@ export class OfertasComponent {
   constructor(private activatedRoute:ActivatedRoute, private ofertaService:OfertaService) {
     this.activatedRoute.params.subscribe(params => {
       this.ofertaService.getOfertasByEmpresaId(params['id']).subscribe(data => {
-        console.log(data)
         this.ofertas = data['ofertas'] as Oferta[]
       })
     })

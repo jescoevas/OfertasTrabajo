@@ -1,0 +1,38 @@
+<div class="container animate__animated animate__fadeInRight animate__fast">
+    <div *ngIf="oferta">
+        <div class="row">
+            <h1 class="col text-left">{{oferta.titulo}}</h1>
+            <div class="col text-right">
+                <button class="btn btn-primary" (click)="atras()">
+                    <i class="fa fa-arrow-left"></i>
+                    Atrás
+                </button>
+            </div>
+        </div>
+        <hr>
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th class="w-25">Fecha límite</th>
+                    <td>{{oferta.fechaLimite | fecha}}</td>
+                </tr>
+                <tr>
+                    <th>Descripcion</th>
+                    <td>{{oferta.descripcion}}</td>
+                </tr>
+                <tr>
+                    <th>Requisitos</th>
+                    <td>{{oferta.requisitos}}</td>
+                </tr>
+                <tr>
+                    <th>Sueldo</th>
+                    <td>{{oferta.sueldo}}€</td>
+                </tr>
+                <tr>
+                    <th>Empresa</th>
+                    <td><a [routerLink]="['/empresa', empresa._id]">{{empresa.nombre}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

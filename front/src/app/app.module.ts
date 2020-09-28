@@ -12,6 +12,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { ListaOfertasComponent } from './components/lista-ofertas/lista-ofertas.component';
 import { OfertasComponent } from './pages/ofertas/ofertas.component';
 import { FormOfertaComponent } from './pages/form-oferta/form-oferta.component';
+import { OfertaComponent } from './pages/oferta/oferta.component';
+import { EmpresaComponent } from './pages/empresa/empresa.component';
+import { FechaPipe } from './pipes/fecha.pipe';
 
 
 @NgModule({
@@ -23,7 +26,10 @@ import { FormOfertaComponent } from './pages/form-oferta/form-oferta.component';
     LoginComponent,
     ListaOfertasComponent,
     OfertasComponent,
-    FormOfertaComponent
+    FormOfertaComponent,
+    OfertaComponent,
+    EmpresaComponent,
+    FechaPipe
   ],
   imports: [
     BrowserModule,
