@@ -1,0 +1,19 @@
+<div class="container animate__animated animate__fadeInRight animate__fast">
+    <div class="row">
+        <h1 class="col text-left">Tus ofertas</h1>
+        <div class="col text-right">
+            <button class="btn btn-primary" routerLink="/oferta/new">
+                <i class="fa fa-plus"></i>
+                Registrar oferta
+            </button>
+        </div>
+    </div>
+    <hr>
+
+    <ng-container *ngIf="ofertas.length === 0; else elseTemplate">
+        <strong>No has registrado ofertas. Registre una ahora</strong>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <app-lista-ofertas [ofertas]="ofertas"></app-lista-ofertas>
+    </ng-template>
+</div>

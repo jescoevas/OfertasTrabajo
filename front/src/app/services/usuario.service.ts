@@ -32,10 +32,10 @@ export class UsuarioService {
   }
 
   sesionIniciada(){
-    if(localStorage.getItem('_id')){
-      return true
-    }else{
-      return false
-    }
+    return localStorage.getItem('_id') ? true : false
+  }
+
+  getId(){
+    return localStorage.getItem('_id') || null
   }
 }

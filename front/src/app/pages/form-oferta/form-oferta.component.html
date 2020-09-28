@@ -1,0 +1,41 @@
+<div class="container animate__animated animate__fadeInRight animate__fast">
+    <div class="row">
+        <h1 class="col text-left">Nueva oferta</h1>
+        <div class="col text-right">
+            <button class="btn btn-primary" [routerLink]="['/ofertas', usuarioService.getId()]">
+                <i class="fa fa-arrow-left"></i>
+                Mis ofertas
+            </button>
+        </div>
+    </div>
+    <hr>
+    <form (ngSubmit)="submit()" [formGroup]="form" autocomplete="off">
+        <div class="form-group">
+            <label>Título</label>
+            <input type="text" class="form-control" formControlName="titulo" [class.is-invalid]="tituloNoValido">
+            <small *ngIf="tituloCampoRequerido" class="text-danger">Campo requerido</small>
+        </div>
+        <div class="form-group">
+            <label>Fecha límite</label>
+            <input type="date" class="form-control" formControlName="fechaLimite" [class.is-invalid]="fechaLimiteNoValido">
+            <small *ngIf="fechaLimiteCampoRequerido" class="text-danger">Campo requerido</small>
+            <small *ngIf="fechaLimiteFechaPosteriorAHoy" class="text-danger">La fecha debe ser posterior a hoy</small>
+        </div>
+        <div class="form-group">
+            <label>Descripcion</label>
+            <textarea rows="4" class="form-control" formControlName="descripcion" [class.is-invalid]="descripcionNoValido"></textarea>
+            <small *ngIf="descripcionCampoRequerido" class="text-danger">Campo requerido</small>
+        </div>
+        <div class="form-group">
+            <label>Requisitos</label>
+            <textarea rows="4" class="form-control" formControlName="requisitos" [class.is-invalid]="requisitosNoValido"></textarea>
+            <small *ngIf="requisitosCampoRequerido" class="text-danger">Campo requerido</small>
+        </div>
+        <div class="form-group">
+            <label>Sueldo</label>
+            <input type="number" class="form-control" formControlName="sueldo" [class.is-invalid]="sueldoNoValido">
+            <small *ngIf="sueldoCampoRequerido" class="text-danger">Campo requerido</small>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid"></button>
+    </form>
+</div>

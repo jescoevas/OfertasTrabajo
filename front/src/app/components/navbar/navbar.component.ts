@@ -9,7 +9,7 @@ import { UsuarioService } from '../../services/usuario.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor( public usuarioService:UsuarioService) { }
+  constructor( public usuarioService:UsuarioService) {}
 
   ngOnInit() {
     $("#wrapper").toggleClass("toggled");

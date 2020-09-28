@@ -1,0 +1,14 @@
+<div class="card-deck">
+    <div class="card" *ngFor="let oferta of ofertas">
+        <div class="card-body">
+            <h5 class="card-title">{{oferta.titulo}}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Fecha límite: {{oferta.fechaLimite}}</li>
+            <li class="list-group-item">Sueldo: {{oferta.sueldo}}</li>
+        </ul>
+        <div class="card-body">
+            <button type="button" class="btn btn-primary btn-block">Ver detalles</button>
+        </div>
+    </div>
+</div>
