@@ -15,6 +15,10 @@ import { FormOfertaComponent } from './pages/form-oferta/form-oferta.component';
 import { OfertaComponent } from './pages/oferta/oferta.component';
 import { EmpresaComponent } from './pages/empresa/empresa.component';
 import { FechaPipe } from './pipes/fecha.pipe';
+import { CardOfertaComponent } from './components/card-oferta/card-oferta.component';
+import { SolicitudesComponent } from './pages/solicitudes/solicitudes.component';
+import { ListaSolicitudesComponent } from './components/lista-solicitudes/lista-solicitudes.component';
+import { CardSolicitudComponent } from './components/card-solicitud/card-solicitud.component';
 
 
 @NgModule({
@@ -30,6 +34,10 @@ import { FechaPipe } from './pipes/fecha.pipe';
     OfertaComponent,
     EmpresaComponent,
     FechaPipe,
+    CardOfertaComponent,
+    SolicitudesComponent,
+    ListaSolicitudesComponent,
+    CardSolicitudComponent,
   ],
   imports: [
     BrowserModule,

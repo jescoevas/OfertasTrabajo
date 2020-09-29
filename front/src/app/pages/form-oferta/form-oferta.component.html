@@ -1,4 +1,4 @@
-<div class="container animate__animated animate__fadeInRight animate__fast">
+<div class="container mb-2 animate__animated animate__fadeInRight animate__fast">
     <div class="row">
         <h1 class="col text-left">Nueva oferta</h1>
         <div class="col text-right">
@@ -36,6 +36,6 @@
             <input type="number" class="form-control" formControlName="sueldo" [class.is-invalid]="sueldoNoValido">
             <small *ngIf="sueldoCampoRequerido" class="text-danger">Campo requerido</small>
         </div>
-        <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid"></button>
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid">Registrar</button>
     </form>
 </div>

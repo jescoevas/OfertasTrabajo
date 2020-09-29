@@ -1,9 +1,9 @@
 const { Schema, model } = require('mongoose')
 
 const solicitudSchema = new Schema({
-    empresa: {
+    oferta: {
         type: Schema.Types.ObjectId,
-        ref: 'Empresa'
+        ref: 'Oferta'
     },
     demandante: {
         type: Schema.Types.ObjectId,

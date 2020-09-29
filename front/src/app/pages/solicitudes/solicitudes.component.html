@@ -1,0 +1,10 @@
+<div class="container animate__animated animate__fadeInRight animate__fast">
+    <h1>Tus solicitudes</h1>
+    <hr>
+    <ng-container *ngIf="solicitudes.length === 0; else elseTemplate">
+        <strong>No tienes solicitudes</strong>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <app-lista-solicitudes [solicitudes]="solicitudes"></app-lista-solicitudes>
+    </ng-template>
+</div>

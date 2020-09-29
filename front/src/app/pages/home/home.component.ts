@@ -10,10 +10,13 @@ import { OfertaService } from '../../services/oferta.service';
 export class HomeComponent implements OnInit {
 
   ofertas:Oferta[] = []
+  primeraOferta:Oferta
 
   constructor(private ofertaService:OfertaService) { 
     this.ofertaService.getOfertas().subscribe(data => {
       this.ofertas = data['ofertas'] as Oferta[]
+      this.primeraOferta = this.ofertas[0]
+      this.ofertas.shift()
     })
   }
 

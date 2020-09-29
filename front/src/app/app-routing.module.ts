@@ -7,6 +7,7 @@ import { OfertasComponent } from './pages/ofertas/ofertas.component';
 import { FormOfertaComponent } from './pages/form-oferta/form-oferta.component';
 import { OfertaComponent } from './pages/oferta/oferta.component';
 import { EmpresaComponent } from './pages/empresa/empresa.component';
+import { SolicitudesComponent } from './pages/solicitudes/solicitudes.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'oferta/new', component: FormOfertaComponent },
   { path: 'oferta/:id', component: OfertaComponent },
   { path: 'empresa/:id', component: EmpresaComponent },
+  { path: 'solicitudes/:id', component: SolicitudesComponent},
   { path: '**', pathMatch: 'full', redirectTo: '' }
 ];
 

@@ -1,5 +1,23 @@
 <div class="container animate__animated animate__fadeInRight animate__fast">
     <h1>Ofertas actuales</h1>
     <hr>
-    <app-lista-ofertas [ofertas]="ofertas"></app-lista-ofertas>
+    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner mb-2">
+            <div class="carousel-item active">
+                <app-card-oferta [oferta]="primeraOferta"></app-card-oferta>
+            </div>
+            <div class="carousel-item" *ngFor="let oferta of ofertas">
+                <app-card-oferta [oferta]="oferta"></app-card-oferta>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <a type="button" class="btn btn-primary btn-block" href="#carouselExampleControls" role="button" data-slide="prev">Anterior</a>
+            </div>
+            <div class="col">
+                <a type="button" class="btn btn-primary btn-block" href="#carouselExampleControls" role="button" data-slide="next">Siguiente</a>
+            </div>
+        </div>
+    </div>
 </div>

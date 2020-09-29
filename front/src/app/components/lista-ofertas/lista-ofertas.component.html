@@ -1,14 +1,3 @@
 <div class="card-coleccion">
-    <div class="card card-item" *ngFor="let oferta of ofertas">
-        <div class="card-body">
-            <h5 class="card-title">{{oferta.titulo}}</h5>
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Fecha límite: {{oferta.fechaLimite | fecha}}</li>
-            <li class="list-group-item">Sueldo: {{oferta.sueldo}}</li>
-        </ul>
-        <div class="card-body">
-            <button type="button" class="btn btn-primary btn-block" [routerLink]="['/oferta', oferta._id]">Ver detalles</button>
-        </div>
-    </div>
+    <app-card-oferta class="card-item" [oferta]="oferta" *ngFor="let oferta of ofertas"></app-card-oferta>
 </div>
