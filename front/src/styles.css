@@ -9,3 +9,15 @@ input[type=search] {
 a {
     cursor: pointer;
 }
+
+.card-coleccion {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 16px;
+}
+
+.card-item {
+    margin-bottom: 24px;
+    width: 49%;
+}

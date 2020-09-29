@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Oferta } from '../../models/oferta.model';
+import { OfertaService } from '../../services/oferta.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  ofertas:Oferta[] = []
+
+  constructor(private ofertaService:OfertaService) { 
+    this.ofertaService.getOfertas().subscribe(data => {
+      this.ofertas = data['ofertas'] as Oferta[]
+    })
+  }
 
   ngOnInit() {
   }

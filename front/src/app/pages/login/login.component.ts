@@ -60,7 +60,9 @@ export class LoginComponent{
           return ;
         }else{
           const usuario = data['usuario']
+          const tipo = data['tipo'] === 'empresa' ? 'empresa' : 'demandante'
           localStorage.setItem('_id', usuario._id)
+          localStorage.setItem('tipo', tipo)
           this.router.navigateByUrl('/')
         }
       })

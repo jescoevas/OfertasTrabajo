@@ -12,6 +12,10 @@ export class OfertaService {
   constructor(private http:HttpClient, private usuarioService:UsuarioService) { }
 
 
+  getOfertas(){
+    return this.http.get(`${this.back_url}/ofertas`);
+  }
+
   getOfertasByEmpresaId(empresaId){
     return this.http.get(`${this.back_url}/empresa/${empresaId}/ofertas`);
   }

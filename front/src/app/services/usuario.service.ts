@@ -38,4 +38,12 @@ export class UsuarioService {
   getId(){
     return localStorage.getItem('_id') || null
   }
+
+  esEmpresa(){
+    return localStorage.getItem('tipo') === 'empresa'
+  }
+
+  esDemandante(){
+    return localStorage.getItem('tipo') === 'demandante'
+  }
 }

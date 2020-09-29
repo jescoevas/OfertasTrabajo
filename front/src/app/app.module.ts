@@ -29,7 +29,7 @@ import { FechaPipe } from './pipes/fecha.pipe';
     FormOfertaComponent,
     OfertaComponent,
     EmpresaComponent,
-    FechaPipe
+    FechaPipe,
   ],
   imports: [
     BrowserModule,

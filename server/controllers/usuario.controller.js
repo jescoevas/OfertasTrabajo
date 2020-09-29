@@ -40,6 +40,7 @@ usuarioController.login = async(req, resp) => {
             if (coincide) {
                 return resp.json({
                     message: 'Found',
+                    tipo: 'empresa',
                     usuario: empresa
                 })
             } else {
@@ -62,6 +63,7 @@ usuarioController.login = async(req, resp) => {
             if (coincide) {
                 return resp.json({
                     message: 'Found',
+                    tipo: 'demandante',
                     usuario: demandante
                 })
             } else {
@@ -125,5 +127,6 @@ usuarioController.checkWeb = async(req, res) => {
         num: encontrado.length
     })
 }
+
 
 module.exports = { usuarioController }

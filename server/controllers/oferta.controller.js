@@ -4,6 +4,14 @@ const Oferta = require('../models/oferta')
 
 let ofertaController = {}
 
+ofertaController.getAllOfertas = async(req, resp) => {
+    const ofertas = await Oferta.find()
+    return resp.json({
+        success: true,
+        ofertas
+    })
+}
+
 ofertaController.ofertasByEmpresaId = async(req, resp) => {
     const { empresaId } = req.params
     const empresa = await Empresa.findById(empresaId)
