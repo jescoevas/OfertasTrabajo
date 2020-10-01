@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UsuarioService } from './usuario.service';
+import { Oferta } from '../models/oferta.model';
+import { Solicitud } from '../models/solicitud.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +29,20 @@ export class OfertaService {
 
   getOfertaById(id){
     return this.http.get(`${this.back_url}/oferta/${id}`)
+  }
+
+  yaSolicitada(oferta:Oferta, solicitudes:Solicitud[]){
+    if(solicitudes.length === 0){
+      return false
+    }else{
+      for (let i = 0; i < solicitudes.length; i++) {
+        const solicitud = solicitudes[i];
+        if(solicitud.oferta.toString() === oferta._id){
+          return true
+        }
+      }
+    }
+    return false
   }
 
 }

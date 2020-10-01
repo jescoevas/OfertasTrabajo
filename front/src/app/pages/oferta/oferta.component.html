@@ -35,9 +35,15 @@
                 <tr *ngIf="usuarioService.esDemandante()">
                     <td></td>
                     <td class="text-right">
-                        <button type="button" class="btn btn-primary" (click)="solicitar()">
-                            Solicitar
-                        </button>
+                        <ng-container *ngIf="yaSolicitada; else elseTemplate">
+                            <strong>Ya has solicitado esta oferta</strong>
+                        </ng-container>
+                        <ng-template #elseTemplate>
+                            <button type="button" class="btn btn-primary" (click)="solicitar()">
+                                Solicitar
+                            </button>
+                        </ng-template>
+
                     </td>
                 </tr>
             </tbody>
