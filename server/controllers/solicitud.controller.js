@@ -47,7 +47,6 @@ solicitudController.newSolicitud = async(req, resp) => {
     const demandante = await Demandante.findById(demandanteId)
     const data = { oferta, demandante, fecha }
     const solicitud = new Solicitud(data)
-    console.log(solicitud)
     await solicitud.save()
     return resp.json({
         success: true,
@@ -55,13 +54,35 @@ solicitudController.newSolicitud = async(req, resp) => {
     })
 }
 
-solicitudController.getById = async(req, resp) => {
-    const { id } = req.params
-    const solicitud = await Solicitud.findById(id)
+solicitudController.aceptar = async(req, resp) => {
+    const { id } = req.body
+    let solicitud = await Solicitud.findById(id)
+    solicitud.estado = 'ACEPTADA'
+    await solicitud.save()
     return resp.json({
         success: true,
         solicitud
     })
 }
+
+solicitudController.rechazar = async(req, resp) => {
+    const { id } = req.body
+    let solicitud = await Solicitud.findById(id)
+    solicitud.estado = 'RECHAZADA'
+    await solicitud.save()
+    return resp.json({
+        success: true,
+        solicitud
+    })
+}
+
+// solicitudController.getById = async(req, resp) => {
+//     const { id } = req.params
+//     const solicitud = await Solicitud.findById(id)
+//     return resp.json({
+//         success: true,
+//         solicitud
+//     })
+// }
 
 module.exports = { solicitudController }

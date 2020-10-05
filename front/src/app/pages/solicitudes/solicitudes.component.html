@@ -12,6 +12,8 @@
                     <th scope="col">Código de la oferta</th>
                     <th scope="col">Fecha límite</th>
                     <th scope="col">Estado</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -19,7 +21,18 @@
                     <th scope="row">{{i+1}}</th>
                     <td><a [routerLink]="['/oferta', solicitud.oferta]">{{solicitud.oferta}}</a></td>
                     <td>{{solicitud.fecha | fecha}}</td>
-                    <td>{{solicitud.estado}}</td>
+                    <td [ngClass]="coloresEstado(solicitud)">
+                        {{solicitud.estado}}
+                    </td>
+                    <div *ngIf="usuarioService.esEmpresa()">
+                        <td>
+                            <a [routerLink]="['/demandante', solicitud.demandante, 'curriculum']">Datos del demandante</a>
+                        </td>
+                        <td *ngIf="solicitud.estado === 'PENDIENTE'">
+                            <button type="button" class="btn btn-success" (click)="aceptar(solicitud)">Aceptar</button>
+                            <button type="button" class="btn btn-danger" (click)="rechazar(solicitud)">Rechazar</button>
+                        </td>
+                    </div>
                 </tr>
             </tbody>
         </table>

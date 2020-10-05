@@ -8,6 +8,7 @@ import { FormOfertaComponent } from './pages/form-oferta/form-oferta.component';
 import { OfertaComponent } from './pages/oferta/oferta.component';
 import { EmpresaComponent } from './pages/empresa/empresa.component';
 import { SolicitudesComponent } from './pages/solicitudes/solicitudes.component';
+import { CurriculumComponent } from './pages/curriculum/curriculum.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'empresa/:id', component: EmpresaComponent },
   { path: 'demandante/:demandanteId/solicitudes', component: SolicitudesComponent},
   { path: 'empresa/:empresaId/solicitudes', component: SolicitudesComponent},
+  { path: 'demandante/:id/curriculum', component: CurriculumComponent },
   { path: '**', pathMatch: 'full', redirectTo: '' }
 ];
 

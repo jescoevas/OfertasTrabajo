@@ -23,4 +23,12 @@ export class SolicitudService {
     return this.http.post(`${this.back_url}/solicitud/new`, data)
   }
 
+  aceptarSolicitud(id:string){
+    return this.http.post(`${this.back_url}/solicitud/${id}/aceptar`, {id})
+  }
+
+  rechazarSolicitud(id:string){
+    return this.http.post(`${this.back_url}/solicitud/${id}/rechazar`, {id})
+  }
+
 }

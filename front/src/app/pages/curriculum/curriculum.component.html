@@ -1,0 +1,43 @@
+<div class="container animate__animated animate__fadeInRight animate__fast">
+    <div *ngIf="curriculum">
+        <div class="row">
+            <h3 class="col text-left"><strong>Formación académica</strong></h3>
+            <div class="col text-right">
+                <button class="btn btn-primary" (click)="atras()">
+                    <i class="fa fa-arrow-left"></i>
+                    Atras
+                </button>
+                <button *ngIf="usuarioService.esDemandante()" class="btn btn-primary mx-1">
+                    <i class="fa fa-pencil"></i>
+                    Editar
+                </button>
+            </div>
+        </div>
+        <hr>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let f of curriculum.formacionAcademica">{{f}}</li>
+        </ul>
+        <br>
+
+        <h3><strong>Formación complementaria</strong></h3>
+        <hr>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let f of curriculum.formacionComplementaria">{{f}}</li>
+        </ul>
+        <br>
+
+        <h3><strong>Experiencia profesional</strong></h3>
+        <hr>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let e of curriculum.experiencia">{{e}}</li>
+        </ul>
+        <br>
+
+        <h3><strong>Competencias</strong></h3>
+        <hr>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let c of curriculum.competencias">{{c}}</li>
+        </ul>
+        <br>
+    </div>
+</div>
