@@ -15,6 +15,10 @@ export class SolicitudService {
     return this.http.get(`${this.back_url}/demandante/${demandanteId}/solicitudes`);
   }
 
+  getSolicitudesByEmpresaId(empresaId){
+    return this.http.get(`${this.back_url}/empresa/${empresaId}/solicitudes`);
+  }
+
   newSolicitud(data){
     return this.http.post(`${this.back_url}/solicitud/new`, data)
   }

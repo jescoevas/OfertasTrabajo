@@ -254,7 +254,7 @@ export class RegistroComponent{
         telefono:['', [Validators.required, this.debeSerNumerico]],
         email:['', [Validators.required, Validators.email], [this.emailEnUsoDemandante]],
         direccion:['', [Validators.required]],
-        foto:['', [Validators.required]],
+        foto:[''],
       })
       this.datos = 'Demandante'
     }else{
@@ -269,7 +269,6 @@ export class RegistroComponent{
       this.form.markAllAsTouched()
     }else{
       this.usuarioService.registro(this.form.value).subscribe(data => {
-        console.log(data)
         this.router.navigateByUrl('')
       })
     }

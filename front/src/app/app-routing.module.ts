@@ -18,7 +18,8 @@ const routes: Routes = [
   { path: 'oferta/new', component: FormOfertaComponent },
   { path: 'oferta/:id', component: OfertaComponent },
   { path: 'empresa/:id', component: EmpresaComponent },
-  { path: 'solicitudes/:id', component: SolicitudesComponent},
+  { path: 'demandante/:demandanteId/solicitudes', component: SolicitudesComponent},
+  { path: 'empresa/:empresaId/solicitudes', component: SolicitudesComponent},
   { path: '**', pathMatch: 'full', redirectTo: '' }
 ];
 

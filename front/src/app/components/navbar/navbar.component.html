@@ -6,7 +6,8 @@
             <a routerLink='' class="list-group-item list-group-item-action bg-primary">Inicio</a>
             <ng-container *ngIf="usuarioService.sesionIniciada(); else elseTemplate">
                 <a *ngIf="usuarioService.esEmpresa()" [routerLink]="['ofertas', usuarioService.getId()]" class="list-group-item list-group-item-action bg-primary">Mis ofertas</a>
-                <a *ngIf="usuarioService.esDemandante()" [routerLink]="['solicitudes', usuarioService.getId()]" class="list-group-item list-group-item-action bg-primary">Mis solicitudes</a>
+                <a *ngIf="usuarioService.esEmpresa()" [routerLink]="['empresa', usuarioService.getId(), 'solicitudes']" class="list-group-item list-group-item-action bg-primary">Mis solicitudes</a>
+                <a *ngIf="usuarioService.esDemandante()" [routerLink]="['demandante',usuarioService.getId(),'solicitudes']" class="list-group-item list-group-item-action bg-primary">Mis solicitudes</a>
                 <a class="list-group-item list-group-item-action bg-primary" (click)="logout()">Cerrar sesión</a>
             </ng-container>
             <ng-template #elseTemplate>

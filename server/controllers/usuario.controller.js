@@ -1,5 +1,6 @@
 const Empresa = require('../models/empresa')
 const Demandante = require('../models/demandante')
+const Curriculum = require('../models/curriculum')
 const bcryptjs = require('bcryptjs')
 
 let usuarioController = {}
@@ -23,6 +24,9 @@ usuarioController.registro = async(req, resp) => {
         const hashPassword = await bcryptjs.hash(demandante.password, salt)
         demandante.password = hashPassword
         await demandante.save()
+        const curriculum = new Curriculum()
+        curriculum.demandante = demandante
+        await curriculum.save()
         return resp.json({
             success: true,
             demandante

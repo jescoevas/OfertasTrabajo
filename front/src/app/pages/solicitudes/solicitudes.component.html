@@ -5,6 +5,23 @@
         <strong>No tienes solicitudes</strong>
     </ng-container>
     <ng-template #elseTemplate>
-        <app-lista-solicitudes [solicitudes]="solicitudes"></app-lista-solicitudes>
+        <table class="table">
+            <thead>
+                <tr class="bg-primary">
+                    <th scope="col"></th>
+                    <th scope="col">Código de la oferta</th>
+                    <th scope="col">Fecha límite</th>
+                    <th scope="col">Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let solicitud of solicitudes; let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <td><a [routerLink]="['/oferta', solicitud.oferta]">{{solicitud.oferta}}</a></td>
+                    <td>{{solicitud.fecha | fecha}}</td>
+                    <td>{{solicitud.estado}}</td>
+                </tr>
+            </tbody>
+        </table>
     </ng-template>
 </div>

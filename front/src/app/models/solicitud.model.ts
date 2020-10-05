@@ -4,7 +4,7 @@ import { Demandante } from './demandante.model';
 
 export interface Solicitud{
     _id:string,
-    oferta:Oferta
+    oferta:Oferta,
     demandante:Demandante,
     fecha:Date,
     estado:string
