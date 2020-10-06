@@ -14,5 +14,8 @@ export class CurriculumService {
     return this.http.get(`${this.back_url}/demandante/${id}/curriculum`)
   }
   
+  editarCurriculum(data){
+    return this.http.put(`${this.back_url}/curriculum/editar`,data)
+  }
 
 }

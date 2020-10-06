@@ -13,4 +13,14 @@ curriculumController.getByDemandanteId = async(req, resp) => {
     })
 }
 
+curriculumController.editarCurriculum = async(req, resp) => {
+    const { id } = req.body
+    delete req.body.id
+    const curriculum = await Curriculum.findByIdAndUpdate(id, req.body, { new: true })
+    return resp.json({
+        success: true,
+        curriculum
+    })
+}
+
 module.exports = { curriculumController }
