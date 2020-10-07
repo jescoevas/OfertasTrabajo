@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+
   constructor( public usuarioService:UsuarioService, private router:Router) {}
 
   ngOnInit() {
@@ -24,6 +25,10 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('_id')
     localStorage.removeItem('tipo')
     this.router.navigateByUrl('')
+  }
+
+  buscar(titulo:string){
+    this.router.navigate(['/buscador', titulo])
   }
 
 }

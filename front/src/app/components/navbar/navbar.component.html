@@ -25,13 +25,8 @@
     <div id="page-content-wrapper">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary border-bottom">
             <button class="btn btn-primary" id="menu-toggle"><span class="navbar-toggler-icon"></span></button>
-            <input class="form-control ml-2 w-25" type="search" placeholder="Busque su oferta" aria-label="Search">
+            <input class="form-control ml-2 w-25" type="search" placeholder="Busque su oferta" aria-label="Search" #buscador (keyup.enter)="buscar(buscador.value)">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" routerLink=''>Home</a>
-                    </li>
-                </ul>
                 <div class="navbar-nav ml-auto mt-2 mt-lg-0 h2" style="color: white;">
                     OfertasTrabajo
                 </div>

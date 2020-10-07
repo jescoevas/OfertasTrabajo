@@ -9,6 +9,7 @@ import { OfertaComponent } from './pages/oferta/oferta.component';
 import { EmpresaComponent } from './pages/empresa/empresa.component';
 import { SolicitudesComponent } from './pages/solicitudes/solicitudes.component';
 import { CurriculumComponent } from './pages/curriculum/curriculum.component';
+import { BuscadorComponent } from './pages/buscador/buscador.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'demandante/:demandanteId/solicitudes', component: SolicitudesComponent},
   { path: 'empresa/:empresaId/solicitudes', component: SolicitudesComponent},
   { path: 'demandante/:id/curriculum', component: CurriculumComponent },
+  { path: 'buscador/:titulo', component: BuscadorComponent },
   { path: '**', pathMatch: 'full', redirectTo: '' }
 ];
 

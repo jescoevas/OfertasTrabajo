@@ -22,6 +22,15 @@ ofertaController.ofertasByEmpresaId = async(req, resp) => {
     })
 }
 
+ofertaController.ofertasByTitulo = async(req, resp) => {
+    const { titulo } = req.body
+    const ofertas = await Oferta.find({ titulo: { $regex: titulo, $options: 'i' } })
+    return resp.json({
+        success: true,
+        ofertas
+    })
+}
+
 ofertaController.newOferta = async(req, resp) => {
     const data = req.body
     const { id } = data

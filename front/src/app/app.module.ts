@@ -18,6 +18,7 @@ import { FechaPipe } from './pipes/fecha.pipe';
 import { CardOfertaComponent } from './components/card-oferta/card-oferta.component';
 import { SolicitudesComponent } from './pages/solicitudes/solicitudes.component';
 import { CurriculumComponent } from './pages/curriculum/curriculum.component';
+import { BuscadorComponent } from './pages/buscador/buscador.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { CurriculumComponent } from './pages/curriculum/curriculum.component';
     CardOfertaComponent,
     SolicitudesComponent,
     CurriculumComponent,
+    BuscadorComponent,
   ],
   imports: [
     BrowserModule,

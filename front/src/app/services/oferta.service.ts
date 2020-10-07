@@ -18,6 +18,10 @@ export class OfertaService {
     return this.http.get(`${this.back_url}/ofertas`);
   }
 
+  getOfertasByTitulo(titulo:string){
+    return this.http.post(`${this.back_url}/ofertas`, {titulo});
+  }
+
   getOfertasByEmpresaId(empresaId){
     return this.http.get(`${this.back_url}/empresa/${empresaId}/ofertas`);
   }
