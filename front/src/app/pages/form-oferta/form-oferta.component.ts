@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { OfertaService } from '../../services/oferta.service';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-form-oferta',
@@ -83,7 +84,12 @@ export class FormOfertaComponent {
       this.form.markAllAsTouched()
       return;
     }else{
+      Swal.showLoading()
       this.ofertaService.newOferta(this.form.value).subscribe(data => {
+        Swal.fire({
+          icon:'success',
+          title:'Oferta registrada'
+        })
         this.router.navigateByUrl(`/ofertas/${this.usuarioService.getId()}`)
       })
     }

@@ -3,6 +3,7 @@ import { Solicitud } from '../../models/solicitud.model';
 import { SolicitudService } from '../../services/solicitud.service';
 import { ActivatedRoute } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-solicitudes',
@@ -41,15 +42,43 @@ export class SolicitudesComponent{
   }
 
   aceptar(solicitud:Solicitud){
-    if(confirm('¿Seguro que quieres aceptar esta solicitud?')){
-      this.solicitudService.aceptarSolicitud(solicitud._id).subscribe(data => this.cargarSolicitudes())
-    }
+    Swal.fire({
+      icon:'question',
+      title:'¿Seguro que quieres aceptar esta solicitud?',
+      showCancelButton: true,
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+        this.solicitudService.aceptarSolicitud(solicitud._id).subscribe(data => {
+          this.cargarSolicitudes()
+          Swal.fire({
+            icon:'success',
+            title:'Solicitud aceptada'
+          })
+        })
+      }
+    })
   }
 
   rechazar(solicitud:Solicitud){
-    if(confirm('¿Seguro que quieres rechazar esta solicitud?')){
-      this.solicitudService.rechazarSolicitud(solicitud._id).subscribe(data => this.cargarSolicitudes())
-    }
+    Swal.fire({
+      icon:'question',
+      title:'¿Seguro que quieres aceptar esta solicitud?',
+      showCancelButton: true,
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+        this.solicitudService.rechazarSolicitud(solicitud._id).subscribe(data => {
+          this.cargarSolicitudes()
+          Swal.fire({
+            icon:'error',
+            title:'Solicitud rechazada'
+          })
+        })
+      }
+    })
   }
 
 }

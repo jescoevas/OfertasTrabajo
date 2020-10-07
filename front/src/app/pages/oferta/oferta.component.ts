@@ -6,6 +6,7 @@ import { Empresa } from '../../models/empresa.model';
 import { UsuarioService } from '../../services/usuario.service';
 import { SolicitudService } from '../../services/solicitud.service';
 import { Solicitud } from '../../models/solicitud.model';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-oferta',
@@ -39,16 +40,28 @@ export class OfertaComponent{
   }
 
   solicitar(){
-    if(confirm('¿Seguro que quieres solicitar esta oferta?')){
-      const data = {
-        ofertaId:this.oferta._id,
-        demandanteId:this.usuarioService.getId(),
-        fecha:new Date()
+    Swal.fire({
+      icon:'question',
+      title:'¿Seguro que quieres solicitar este empleo?',
+      showCancelButton: true,
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+        const data = {
+          ofertaId:this.oferta._id,
+          demandanteId:this.usuarioService.getId(),
+          fecha:new Date()
+        }
+        this.solicitudService.newSolicitud(data).subscribe(res => {
+          this.comprobarSolicitud()
+          Swal.fire({
+            icon:'success',
+            title:'Solicitud realizada con éxito'
+          })
+        })
       }
-      this.solicitudService.newSolicitud(data).subscribe(res => {
-        this.comprobarSolicitud()
-      })
-    }
+    })
   }
 
 }

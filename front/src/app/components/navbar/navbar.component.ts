@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-navbar',
@@ -22,9 +23,11 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(){
+    Swal.showLoading()
     localStorage.removeItem('_id')
     localStorage.removeItem('tipo')
     this.router.navigateByUrl('')
+    Swal.close()
   }
 
   buscar(titulo:string){

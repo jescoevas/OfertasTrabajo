@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { UsuarioService } from '../../services/usuario.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-login',
@@ -51,6 +51,7 @@ export class LoginComponent{
     if(this.form.invalid){
       this.form.markAllAsTouched()
     }else{
+      Swal.showLoading()
       this.usuarioService.login(this.form.value).subscribe(data => {
         if(data['message'] === 'Incorrect user'){
           this.usuarioNoExiste = true
@@ -64,6 +65,7 @@ export class LoginComponent{
           localStorage.setItem('_id', usuario._id)
           localStorage.setItem('tipo', tipo)
           this.router.navigateByUrl('/')
+          Swal.close()
         }
       })
     }

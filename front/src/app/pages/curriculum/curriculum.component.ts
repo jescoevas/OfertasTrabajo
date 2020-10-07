@@ -4,6 +4,7 @@ import { CurriculumService } from '../../services/curriculum.service';
 import { Curriculum } from '../../models/curriculum.model';
 import { UsuarioService } from '../../services/usuario.service';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-curriculum',
@@ -88,11 +89,16 @@ export class CurriculumComponent {
   }
 
   submit(){
+    Swal.showLoading()
     let data = this.form.value
     data.id = this.curriculum._id
     this.curriculumService.editarCurriculum(data).subscribe(res => {
       this.cargarCurriculum()
       this.formActivo = false
+      Swal.fire({
+        icon:'success',
+        title:'Curriculum actualizado'
+      })
     })
   }
 

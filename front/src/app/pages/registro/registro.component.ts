@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-registro',
@@ -268,7 +269,12 @@ export class RegistroComponent{
     if(this.form.invalid){
       this.form.markAllAsTouched()
     }else{
+      Swal.showLoading()
       this.usuarioService.registro(this.form.value).subscribe(data => {
+        Swal.fire({
+          icon:'success',
+          title:'Registro exitoso'
+        })
         this.router.navigateByUrl('')
       })
     }
